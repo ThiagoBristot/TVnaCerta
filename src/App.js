@@ -54,8 +54,15 @@ const App = () => {
   }, [source]); // Recarrega quando a 'source' mudar
 
   // Função para logar quando o canal é selecionado
-  const handleChannelSelect = (channel) => {
-    setSelectedChannel(channel);
+  const handleChannelSelect = async (channel) => {
+    try {
+      const response = await fetch(`/api/fetchChannel?channelUrl=${encodeURIComponent(channel.url)}`);
+      const streamData = await response.text();
+
+      setSelectedChannel({ ...channel, streamData });
+    } catch (error) {
+      console.error('Erro ao carregar o canal:', error);
+    }
   };
 
   // Função para alternar a fonte dos canais
