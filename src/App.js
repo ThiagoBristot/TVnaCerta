@@ -10,14 +10,16 @@ const App = () => {
   // Função para carregar os canais do backend
   const fetchChannels = async () => {
     try {
-      const response = await fetch('/api/channels'); // Chamando a função serverless
-      const data = await response.json();
+      const response = await fetch('/api/channels');
+      const text = await response.text(); // Ler a resposta como texto
+      console.log('Raw response:', text);  // Logar a resposta bruta
+  
+      const data = JSON.parse(text);        // Tentar analisar o texto como JSON
       setChannels(data);
     } catch (error) {
       console.error('Error fetching channels:', error);
     }
-  };
-  
+  };  
 
   useEffect(() => {
     fetchChannels();
