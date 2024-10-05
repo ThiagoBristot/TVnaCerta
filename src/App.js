@@ -15,7 +15,6 @@ const App = () => {
 
       // Filtrar os canais brasileiros
       const brazilianChannels = data.filter(channel => 
-        channel.name.toLowerCase().includes('brasil') 
       );
 
       setChannels(brazilianChannels);
