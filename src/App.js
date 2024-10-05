@@ -10,18 +10,14 @@ const App = () => {
   // Função para carregar os canais do backend
   const fetchChannels = async () => {
     try {
-      const response = await fetch('https://iptv-org.github.io/api/channels.json');
+      const response = await fetch('/api/channels'); // Chamando a função serverless
       const data = await response.json();
-
-      // Filtrar os canais brasileiros
-      const brazilianChannels = data.filter(channel => 
-      );
-
-      setChannels(brazilianChannels);
+      setChannels(data);
     } catch (error) {
       console.error('Error fetching channels:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchChannels();
