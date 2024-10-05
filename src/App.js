@@ -11,15 +11,13 @@ const App = () => {
   const fetchChannels = async () => {
     try {
       const response = await fetch('/api/channels');
-      const text = await response.text(); // Ler a resposta como texto
-      console.log('Raw response:', text);  // Logar a resposta bruta
-  
-      const data = JSON.parse(text);        // Tentar analisar o texto como JSON
+      const data = await response.json(); // Ler a resposta como JSON
+      console.log('Fetched channels:', data); // Logar os canais buscados
       setChannels(data);
     } catch (error) {
       console.error('Error fetching channels:', error);
     }
-  };  
+  };
 
   useEffect(() => {
     fetchChannels();
