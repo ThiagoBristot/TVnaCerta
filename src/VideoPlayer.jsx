@@ -1,32 +1,24 @@
-import React, { useEffect, useRef } from 'react';
-import Hls from 'hls.js';
-
-const streamUrl = 'http://localhost:5000/api';
+import React from "react";
+import ReactPlayer from "react-player";
 
 const VideoPlayer = ({ streamUrl }) => {
-  const videoRef = useRef(null);
+  console.log('Stream URL:', streamUrl); // Adicione isso para depuração
 
-  useEffect(() => {
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(streamUrl);
-      hls.attachMedia(videoRef.current);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        videoRef.current.play();
-      });
-    } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-      videoRef.current.src = streamUrl;
-      videoRef.current.addEventListener('loadedmetadata', () => {
-        videoRef.current.play();
-      });
-    }
-  }, [streamUrl]);
+  if (!streamUrl) {
+    return <p>Nenhuma URL de vídeo fornecida</p>;
+  }
 
   return (
-    <div>
-      <video ref={videoRef} controls style={{ width: '100%', height: 'auto' }} />
+    <div className="video-player">
+      <ReactPlayer
+        url={streamUrl}
+        controls={true}
+        playing={true}
+        width="100%"
+        height="100%"
+      />
     </div>
   );
 };
 
-export default VideoPlayer;
+export default VideoPlayer

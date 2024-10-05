@@ -79,7 +79,7 @@ ul li:hover {
   position: fixed; /* Mantém o player fixo ao rolar a página */
   right: 20px;
   top: 100px; /* Distância do topo da página */
-  margin-top: 3%;
+  margin: 10px 10px; /* Espaçamento superior/inferior */
   
 }
 
