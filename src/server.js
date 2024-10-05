@@ -37,7 +37,7 @@ app.get('/api/channels', async (req, res) => {
 
 // Rota principal - Serve o React App para todas as rotas não-API
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 // Inicializa o servidor
