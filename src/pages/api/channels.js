@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     // Filtrar para retornar apenas nome, URL e logo
     const filteredChannels = channels.map(channel => ({
       name: channel.name,
-      url: channel.website,
+      website: channel.website,
       logo: channel.logo
     }));
 

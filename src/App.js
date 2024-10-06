@@ -63,7 +63,7 @@ const App = () => {
         <div className="video-container">
           {selectedChannel ? (
             <div>
-              <VideoPlayer streamUrl={selectedChannel.url} /> {/* Passa a URL corretamente */}
+              <VideoPlayer streamUrl={selectedChannel.website} /> 
               <div>
                 <img
                   src={selectedChannel.logo}
