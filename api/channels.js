@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
     const channels = await response.json(); // Parseando a resposta como JSON
 
-    res.status(200).json(channels); // Enviando os canais sem filtro
+    res.status(200).json(channels);
   } catch (error) {
     console.error('Error fetching channels:', error.message);
     res.status(500).json({ error: 'Error fetching channels' });

@@ -9,29 +9,29 @@ const App = () => {
 
   // Função para carregar os canais do backend
   const fetchChannels = async () => {
-  try {
-    const response = await fetch('/api/channels');
-    const text = await response.text();
-    
-    console.log('Response from API:', text);  // Adicionar log para inspecionar a resposta
+    try {
+      const response = await fetch('/api/channels');
+      const text = await response.text();
 
-    const data = JSON.parse(text); 
-    setChannels(data);
-  } catch (error) {
-    console.error('Error fetching channels:', error);
-  }
-};
+      console.log('Response from API:', text); // Adicionar log para inspecionar a resposta
+
+      const data = JSON.parse(text);
+      setChannels(data); // Armazenar os canais retornados
+    } catch (error) {
+      console.error('Error fetching channels:', error);
+    }
+  };
 
   useEffect(() => {
     fetchChannels();
   }, []);
 
   const handleChannelSelect = (channel) => {
-    setSelectedChannel(channel);
+    setSelectedChannel(channel); // Armazenar o canal selecionado
   };
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
+    setSearchTerm(e.target.value); // Atualizar o termo de busca
   };
 
   const filteredChannels = channels.filter((channel) =>
@@ -63,7 +63,7 @@ const App = () => {
         <div className="video-container">
           {selectedChannel ? (
             <div>
-              <VideoPlayer streamUrl={selectedChannel.url} />
+              <VideoPlayer streamUrl={selectedChannel.url} /> {/* Passa a URL corretamente */}
               <div>
                 <img
                   src={selectedChannel.logo}
