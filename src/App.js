@@ -9,15 +9,18 @@ const App = () => {
 
   // Função para carregar os canais do backend
   const fetchChannels = async () => {
-    try {
-      const response = await fetch('/api/channels');
-      const data = await response.json(); // Ler a resposta como JSON
-      console.log('Fetched channels:', data); // Logar os canais buscados
-      setChannels(data);
-    } catch (error) {
-      console.error('Error fetching channels:', error);
-    }
-  };
+  try {
+    const response = await fetch('/api/channels');
+    const text = await response.text();
+    
+    console.log('Response from API:', text);  // Adicionar log para inspecionar a resposta
+
+    const data = JSON.parse(text); 
+    setChannels(data);
+  } catch (error) {
+    console.error('Error fetching channels:', error);
+  }
+};
 
   useEffect(() => {
     fetchChannels();
