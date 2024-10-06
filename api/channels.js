@@ -1,18 +1,18 @@
-const axios = require('axios');
-
 export default async function handler(req, res) {
-  console.log("API function called");  // Adicionando log para verificar a chamada
-
   try {
-    const response = await axios.get('https://iptv-org.github.io/api/channels.json');
-    const channels = response.data;
+    // Usando fetch ao invés de axios
+    const response = await fetch('https://iptv-org.github.io/api/channels.json');
 
-    // Log para ver a resposta dos canais
-    console.log('Channels fetched:', channels);
+    // Verificando se a resposta está OK
+    if (!response.ok) {
+      throw new Error(`Failed to fetch channels: ${response.status}`);
+    }
 
-    res.status(200).json(channels);
+    const channels = await response.json(); // Parseando a resposta como JSON
+
+    res.status(200).json(channels); // Enviando os canais sem filtro
   } catch (error) {
-    console.error('Error fetching channels:', error);
+    console.error('Error fetching channels:', error.message);
     res.status(500).json({ error: 'Error fetching channels' });
   }
 }
